@@ -1,0 +1,55 @@
+<h1>Lista de bookings</h1>
+<p>Generaci&oacute;n de EDI file.</p>
+<p>
+</p>
+<p *ngIf="!bookList"><em>Loading...</em></p>
+<div class="row">
+  <!-- DOM dataTable -->
+  <div class="col-md-12">
+    <div class="widget">
+      <hr class="widget-separator">
+
+      <p-table [columns]="cols" [value]="bookList" dataKey="ids_bl" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width: 3em"></th>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-book let-expanded="expanded" let-columns="columns">
+          <tr>
+            <td>
+              <a href="#" [pRowToggler]="book">
+                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+              </a>
+            </td>
+            <td *ngFor="let col of columns">
+              {{book[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-book let-columns="columns">
+          <tr>
+            <td [attr.colspan]="columns.length + 1">
+              <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+                <div class="ui-g-12 ui-md-9">
+                  <div class="ui-g">
+                    <div class="ui-g-12">
+                      <b>Vin:</b> {{book.cod_linea}}
+                    </div>
+                    <div class="ui-g-12">
+                      <b>Year:</b> {{book.cod_bl}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

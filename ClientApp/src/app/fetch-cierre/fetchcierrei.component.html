@@ -1,0 +1,37 @@
+﻿<h1>Balance por recaudaci&oacute;n de garant&iacute;as</h1>
+
+<p *ngIf="!cieiList"><em>Loading...</em></p>
+
+<div class="wrap">
+    <section class="app-content">
+        <div class="row">
+            <!-- DOM dataTable -->
+            <div class="col-md-12">
+                <div class="widget">
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <div class="table-responsive">
+                            <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th>Registrado</th>
+                                        <th>Tipo de pago</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let ciei of cieiList">
+                                        <td>$ {{ ciei.total_ingresos }}</td>
+                                        <td>{{ ciei.fecha_registro }}</td>
+                                        <td>{{ ciei.tipo_pago }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

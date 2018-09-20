@@ -1,0 +1,99 @@
+<div class="col-md-10 col-md-offset-1">
+  <h1>{{title}}</h1>
+  <p>Registrar nueva entrega de devoluci&oacute;n a cliente</p>
+  <div class="widget">
+    <hr class="widget-separator">
+  </div>
+  <hr />
+
+  <form [formGroup]="devolForm" (ngSubmit)="save()" #formDir="ngForm" class="form-horizontal">
+    <!--<div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">N&uacute;mero de BL</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="cod_bl" placeholder="N&uacute;mero de BL" required>
+    </div>
+    <span class="text-danger" *ngIf="cod_bl.invalid && formDir.submitted">
+      Número de BL es requerido.  
+    </span>
+  </div>-->
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Cheque</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" autofocus="autofocus" formControlName="cheque" placeholder="N&uacute;mero de cheque" required>
+      </div>
+      <span class="text-danger" *ngIf="cheque.invalid && formDir.submitted">
+        Número de cheque es requerido.
+      </span>
+    </div>
+
+    <!--<div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Clave de acceso cliente</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="clave_acceso_cli" placeholder="Clave de acceso cliente" required>
+    </div>
+    <span class="text-danger" *ngIf="clave_acceso_cli.invalid && formDir.submitted">
+      Clave de acceso del cliente requerido.
+    </span>
+  </div>-->
+    <!--<div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Entrega cheque</label>
+    <div class="col-sm-9">
+      <select class="form-control" data-val="true" formControlName="entrega_cheque">
+        <option value="">-- Seleccionar --</option>
+        <option value="Si">Si</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+    <span class="text-danger" *ngIf="entrega_cheque.invalid && formDir.submitted">
+      Seleccione una opción.
+    </span>
+  </div>-->
+
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Fecha entrega</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="fecha_dev" placeholder="Fecha de entrega" required>
+      </div>
+      <span class="text-danger" *ngIf="fecha_dev.invalid && formDir.submitted">
+        Fecha de entrega requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Recibe</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="cliente_recibe" placeholder="Nombre quien recibe" required>
+      </div>
+      <span class="text-danger" *ngIf="cliente_recibe.invalid && formDir.submitted">
+        Nombre del cliente que recibe requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">C&eacute;dula, RUC o Pasaporte</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="identificacion" placeholder="Identificaci&oacute;n" required>
+      </div>
+      <span class="text-danger" *ngIf="identificacion.invalid && formDir.submitted">
+        Identificaci&oacute;n del cliente que recibe requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Observaci&oacute;n</label>
+      <label for="textarea" style="width:inherit;"></label>
+      <div class="col-sm-9">
+        <textarea class="form-control" id="textarea" formControlName="observacion" placeholder="Ingrese una observaci&oacute;n (opcional)"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-9">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

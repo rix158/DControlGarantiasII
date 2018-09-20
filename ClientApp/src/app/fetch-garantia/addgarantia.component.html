@@ -1,0 +1,226 @@
+<div class="col-md-10 col-md-offset-1">
+  <h1>{{title}}</h1>
+  <h3>Registro de garant&iacute;as</h3>
+  <p *ngIf="!gListed"><em>Loading...</em></p>
+  <div class="widget">
+    <hr class="widget-separator">
+  </div>
+
+  <div class="form-horizontal">
+    <div class="form-group">
+      <!--<label for="control-demo-4" class="col-sm-3">C&oacute;digo BL</label>-->
+      <div class="col-sm-12">
+        <div class='input-group'>
+          <input [(ngModel)]="selectedOption" [typeahead]="listabl" typeaheadOptionField="cod_bl"
+                 (typeaheadOnSelect)="onSelect($event)" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="3"
+                 id="codblgar" autofocus="autofocus" class="form-control" placeholder="N&uacute;mero BL" required/>
+          <span class="input-group-addon bg-info text-white">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" id="listaDetalles">
+      <div class="wrap">
+        <div class="row">
+          <div class="widget">
+            <div class="widget-body">
+              <div class="table-responsive">
+                <table id="fgarantia2" class="table table-striped table-bordered " cellspacing="0" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>C&oacute;digo BL</th>
+                      <th>Nave</th>
+                      <th>No. Cont</th>
+                      <th>Tipo</th>
+                      <th>Contenedor</th>
+                      <th>Consignatario</th>
+                      <th>Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let gar of gListed">
+                      <td>{{ gar.cod_bl }}</td>
+                      <td>{{ gar.nave }}</td>
+                      <td>{{ gar.contenedores }}</td>
+                      <td>{{ gar.tipo_contenedor }}</td>
+                      <td>{{ gar.cod_container }}</td>
+                      <td>{{ gar.consignatario }}</td>
+                      <td>{{ gar.valor }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    <div class="form-group"> 
+      <div class="wrap">
+        <div class="row">
+          <div class="widget">
+            <div class="widget-body">
+              <div class="table-responsive">
+                <table id="fgarantia3" class="table table-striped table-bordered " cellspacing="0" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Banco</th>
+                      <th>Cuenta</th>
+                      <th>Valor</th>
+                      <th>Cheque</th>
+                      <th>Tipo Pago</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let field of fieldArray; let i = index">
+                      <td><input [(ngModel)]="fieldArray[i].banco"  class="form-control input-sm" type="text"/></td>
+                      <td><input [(ngModel)]="fieldArray[i].cuenta" class="form-control input-sm" type="text"/></td>
+                      <td><input [(ngModel)]="fieldArray[i].valor"  class="form-control input-sm" type="text"/></td>
+                      <td><input [(ngModel)]="fieldArray[i].cheque" class="form-control input-sm" type="text"/></td>
+                      <td>
+                        <select [(ngModel)]="fieldArray[i].tipo_pago" class="form-control input-sm" data-val="true">
+                          <option value="">-- Seleccionar --</option>
+                          <option value="cheque">Cheque</option>
+                          <option value="deposito">Dep&oacute;sito</option>
+                          <option value="transferencia">Transferencia</option>
+                        </select>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-info btn-xs"><i class="fa fa-plus" (click)="addFieldValue()"></i></button>
+                        <button type="button" class="btn btn-info btn-xs"><i class="fa fa-minus" (click)="deleteFieldValue(i)"></i></button>
+                      </td>
+                    </tr>
+                    <!--<tr>
+                      <td><input class="form-control input-sm" type="text" id="newAttributeBanco" [(ngModel)]="newAttribute.banco" name="newAttributeBanco" formControlName="banco" /></td>
+                      <td><input class="form-control input-sm" type="text" id="newAttributeCuenta" [(ngModel)]="newAttribute.cuenta" name="newAttributeCuenta" formControlName="numero_cuenta" /></td>
+                      <td><input class="form-control input-sm" type="text" id="newAttributeValor" [(ngModel)]="newAttribute.valor" name="newAttributeValor" formControlName="valor" /></td>
+                      <td><input class="form-control input-sm" type="text" id="newAttributeCheque" [(ngModel)]="newAttribute.cheque" name="newAttributeCheque" formControlName="cheque" /></td>
+                      <td>
+                        <select class="form-control input-sm" id="newAttributeTipoPago" [(ngModel)]="newAttribute.tipo_pago" name="newAttributeTipoPago" formControlName="tipo_pago" data-val="true">
+                          <option value="">-- Seleccionar --</option>
+                          <option value="cheque">Cheque</option>
+                          <option value="deposito">Dep&oacute;sito</option>
+                          <option value="transferencia">Transferencia</option>
+                        </select>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-info btn-xs"><i class="fa fa-plus" (click)="addFieldValue()"></i></button>
+                        <button type="button" class="btn btn-info btn-xs"><i class="fa fa-minus" (click)="deleteFieldValue(i)"></i></button>
+                      </td>
+                    </tr>-->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Cliente</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" [(ngModel)]="cliente" placeholder="Nombre del cliente" required/>
+      </div>
+    </div>
+
+    <!--<div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Nave</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="nave" placeholder="N&uacute;mero de nave" required>
+    </div>
+    <span class="text-danger" *ngIf="nave.invalid && formDir.submitted">
+      N&uacute;mero de nave es requerido.
+    </span>
+  </div>-->
+    <!--<div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Tipo de contenedor</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="tipo_contenedor" placeholder="Tipo de contenedor" required>
+    </div>
+    <span class="text-danger" *ngIf="tipo_contenedor.invalid && formDir.submitted">
+      Tipo de contenedor es requerido.
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Contenedores</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="number" formControlName="contenedores" placeholder="No. Contenedores" required>
+    </div>
+    <span class="text-danger" *ngIf="contenedores.invalid && formDir.submitted">
+      No. Contenedores es requerido.
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Consignatario</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="consignatario" placeholder="Nombre de consignatario" required>
+    </div>
+    <span class="text-danger" *ngIf="consignatario.invalid && formDir.submitted">
+      Nombre del consignatario es requerido.
+    </span>
+  </div>-->
+    <!--<div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Banco</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="banco" placeholder="Nombre del banco" required>
+    </div>
+    <span class="text-danger" *ngIf="banco.invalid && formDir.submitted">
+      Banco es requerido.
+    </span>
+  </div>-->
+    <!--<div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">N&uacute;mero de cuenta</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="numero_cuenta" placeholder="N&uacute;mero de cuenta" required>
+    </div>
+    <span class="text-danger" *ngIf="numero_cuenta.invalid && formDir.submitted">
+      N&uacute;mero de cuenta es requerido.
+    </span>
+  </div>
+
+
+  <div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Valor</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="valor" placeholder="Valor" required>
+    </div>
+    <span class="text-danger" *ngIf="valor.invalid && formDir.submitted">
+      Valor es requerido.
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Cheque</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="cheque" placeholder="N&uacute;mero de cheque" required>
+    </div>
+    <span class="text-danger" *ngIf="cheque.invalid && formDir.submitted">
+      Cheque es requerido.
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="control-demo-4" class="col-sm-3">Valor de cheque</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" formControlName="valor_cheque" placeholder="Valor de cheque" required>
+    </div>
+    <span class="text-danger" *ngIf="valor_cheque.invalid && formDir.submitted">
+      Valor de cheque es requerido.
+    </span>
+  </div>-->
+
+    <div class="form-group">
+      <div class="col-sm-9">
+        <button type="submit" class="btn btn-primary"  (click)="guardar()">Guardar</button>
+        <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

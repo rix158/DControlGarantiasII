@@ -1,0 +1,72 @@
+<div class="col-md-10 col-md-offset-1">
+  <h1>{{title}}</h1>
+  <h3>Exoneraci&oacute;n de BL por cliente</h3>
+  <hr />
+  <div class="widget">
+    <hr class="widget-separator">
+  </div>
+  <hr />
+
+  <form [formGroup]="clienteblForm" (ngSubmit)="save()" #formDir="ngForm" class="form-horizontal">
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Cod. BL</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="cod_bl" placeholder="N&uacute;mero de BL" required>
+      </div>
+      <span class="text-danger" *ngIf="cod_bl.invalid && formDir.submitted">
+        C&Oacute;digo BL es requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Ruc</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="ruc" placeholder="Ruc del cliente" required>
+      </div>
+      <span class="text-danger" *ngIf="ruc.invalid && formDir.submitted">
+        Ruc es requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Cliente</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="cliente" placeholder="Nombre del cliente" required>
+      </div>
+      <span class="text-danger" *ngIf="cliente.invalid && formDir.submitted">
+        Nombre del cliente es requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Exoneraci&oacute;n</label>
+      <div class="col-sm-9">
+        <select class="form-control" data-val="true" formControlName="exoneracion" required>
+          <option value="">-- Seleccionar --</option>
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <span class="text-danger" *ngIf="exoneracion.invalid && formDir.submitted">
+        Seleccione tipo de exoneracion.
+      </span>
+    </div>
+
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Observaci&oacute;n</label>
+      <label for="textarea" style="width:inherit;"></label>
+      <div class="col-sm-9">
+        <textarea class="form-control" id="textarea" formControlName="observacion" placeholder="Ingrese una observaci&oacute;n (opcional)"></textarea>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-9">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
+      </div>
+      </div>
+</form>
+</div>

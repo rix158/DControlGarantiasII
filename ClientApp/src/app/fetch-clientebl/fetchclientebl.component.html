@@ -1,0 +1,41 @@
+<div class="col-md-12">
+  <h1>Datos de BL por cliente con exoneraci&oacute;n</h1>
+  <p></p>
+  <p>Revisi&oacute;n y actualizaci&oacute;n de tipos de exoneraci&oacute;n por BL</p>
+
+  <p *ngIf="!clientsbl"><em>Loading...</em></p>
+
+  <div class="widget">
+    <div class="widget-body">
+        <table class="table table-striped" role="grid" cellspacing="0" style="width:100%">
+          <thead>
+            <tr>
+              <th>C&oacute;digo BL</th>
+              <th>Ruc</th>
+              <th>Cliente</th>
+              <th>Exoneraci&oacute;n</th>
+              <th>Observaci&oacute;n</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let clibl of clientsbl">
+              <td>{{ clibl.cod_bl }}</td>
+              <td>{{ clibl.ruc }}</td>
+              <td>{{ clibl.cliente }}</td>
+              <td>{{ clibl.exoneracion }}</td>
+              <td>{{ clibl.observacion }}</td>
+              <td>
+                <a [routerLink]="['/clientebl/edit/', clibl.id]">Editar</a>
+              </td>
+              <td>
+                <a [routerLink]="" (click)="delete(clibl.id)">Eliminar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

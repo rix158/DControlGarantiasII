@@ -1,0 +1,54 @@
+<div class="col-md-12">
+  <h1>Informaci&oacute;n de garant&iacute;as</h1>
+  <p></p>
+  <p>
+    <button [routerLink]="['/register-garantia']" type="button" class="btn btn-primary"><i class="fa fa-edit"></i>  Registrar nueva garant&iacute;a</button>
+  </p>
+  <p *ngIf="!garants"><em>Loading...</em></p>
+
+  <div class="widget">
+    <header class="widget-header"></header><!-- .widget-header -->
+
+    <div class="widget-body">
+      <table id="fgarantia" class="table table-striped" cellspacing="0" style="width:100%">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>C&oacute;digo BL</th>
+            <th>Nave</th>
+            <th>No. Cont</th>
+            <th>Tipo</th>
+            <th>Contenedor</th>
+            <th>Consignatario</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let gar of garants">
+            <td>{{ gar.fecha_registro }}</td>
+            <td>{{ gar.cod_bl }}</td>
+            <td>{{ gar.nave }}</td>
+            <td>{{ gar.contenedores }}</td>
+            <td>{{ gar.tipo_contenedor }}</td>
+            <td>{{ gar.cod_container }}</td>
+            <td>{{ gar.consignatario }}</td>
+            <td align="right">
+              <a [routerLink]="['/garantia/edit/', gar.id_garantia]">Editar</a> |
+              <a [routerLink]="" (click)="delete(gar.id_garantia)">Eliminar </a>
+            </td>
+            <td align="right">
+              <div class="contact-item">
+                <div class="contact-links">
+                  <a (click)="generarCobro(gar)" tooltip="Generar cobro financiero" placement="top" class="icon icon-circle icon-sm m-b-0"><i class="fa fa-dollar"></i></a>
+                  <a [routerLink]="['/garantia/reporte/', gar.id_garantia]" tooltip="Generar recibo en garantia" placement="top" container="body" class="icon icon-circle icon-sm m-b-0"><i class="fa fa-print"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

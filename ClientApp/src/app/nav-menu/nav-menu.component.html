@@ -1,0 +1,70 @@
+<div class="menubar-scroll">
+  <div class="menubar-scroll-inner">
+    <ul class="app-menu">
+      <li class="has-submenu open">
+        <a href="javascript:void(0)" class="submenu-toggle">
+          <i class="menu-icon zmdi zmdi-view-dashboard zmdi-hc-lg"></i>
+          <span class="menu-text">Control Garant&iacute;as</span>
+          <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+        </a>
+        <ul class="submenu" style="display:block">
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/fetch-cliente']">
+              <span class="menu-text"></span>Registro de clientes
+            </a>
+          </li>
+
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/fetch-clientebl']">
+              <span class="menu-text">Registro de exoneraciones BL</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/fetch-garantia']">
+              <span class="menu-text">Registro de garant&iacute;as</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/fetch-devolucion']">
+              <span class="menu-text">Solicitud de devoluci&oacute;n de garant&iacute;as</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/fetch-devolucionap']">
+              <span class="menu-text">Devoluciones aprobadas</span>
+            </a>
+          </li>
+          <!--<li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/fetch-pagos']">
+              <span class="menu-text">Cierre cobros</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/fetch-devoluciones']">
+              <span class="menu-text">Cierre devoluciones</span>
+            </a>
+          </li>-->
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="javascript:void(0)" class="submenu-toggle">
+          <i class="menu-icon zmdi zmdi-layers zmdi-hc-lg"></i>
+          <span class="menu-text">Generaci&oacute;n EDI</span>
+          <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+        </a>
+        <ul class="submenu">
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/home']">
+              <span class="menu-text">Coparn D95B</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/home']">
+              <span class="menu-text">Otros</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

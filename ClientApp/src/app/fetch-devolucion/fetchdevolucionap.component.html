@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <h1>Informaci&oacute;n de devoluciones aprobadas</h1>
+  <p></p>
+  <hr />
+  <p *ngIf="!devolsap"><em>Loading...</em></p>
+
+  <div class="widget">
+    <div class="widget-body">
+      <table class="table table-striped" role="grid" cellspacing="0" style="width:100%">
+        <thead>
+          <tr>
+            <th>Fecha Registro</th>
+            <th>Cliente</th>
+            <th>Consignatario</th>
+            <th>Doc. Recibo cheque</th>
+            <th>Doc. EIR</th>
+            <th>Estado Aprobaci&oacute;n</th>
+            <th>No. Cheque</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let dev of devolsap">
+            <td>{{ dev.fecha_dev }}</td>
+            <td>{{ dev.cliente }}</td>
+            <td>{{ dev.consignatario }}</td>
+            <td>{{ dev.doc_recibo_cheque }}</td>
+            <td>{{ dev.doc_EIR }}</td>
+            <td>{{ dev.estado_apr}}</td>
+            <td>{{ dev.cheque}}</td>
+            <td>
+              <a [routerLink]="['/devolucionap/edit/', dev.id_devolucion]">Devolver</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

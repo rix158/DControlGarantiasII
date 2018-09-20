@@ -1,0 +1,43 @@
+<div class="col-md-12">
+  <h1>Informaci&oacute;n de solicitudes de devoluci&oacute;n</h1>
+  <p></p>
+  <p>
+    <button [routerLink]="['/register-devolucion']" type="button" class="btn btn-primary"><i class="fa fa-edit"></i>  Registrar solicitud de devoluci&oacute;n</button>
+  </p>
+  <p *ngIf="!devols"><em>Loading...</em></p>
+
+  <div class="widget">
+    <div class="widget-body">
+      <table class="table table-striped" role="grid" cellspacing="0" style="width:100%">
+        <thead>
+          <tr>
+            <th>Fecha Registro</th>
+            <th>Cliente</th>
+            <th>Consignatario</th>
+            <th>Doc. Recibo cheque</th>
+            <th>Doc. EIR</th>
+            <th>Estado Ap.</th>
+            <th>No. Cheque</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let dev of devols">
+            <td>{{ dev.fecha_registro }}</td>
+            <td>{{ dev.cliente }}</td>
+            <td>{{ dev.consignatario }}</td>
+            <td>{{ dev.doc_recibo_cheque }}</td>
+            <td>{{ dev.doc_EIR }}</td>
+            <td>{{ dev.estado_apr}}</td>
+            <td contenteditable="true"></td>
+
+            <td>
+              <a [routerLink]="" (click)="aprobar(dev.id_devolucion)">Aprobar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

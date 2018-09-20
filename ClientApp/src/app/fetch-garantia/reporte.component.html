@@ -1,0 +1,97 @@
+<div class="col-md-10 col-md-offset-1">
+  <p *ngIf="!gar"><em></em></p>
+  <div class="widget">
+    <div class="widget-body">
+      <h2 align="center"> <img src="../../assets/images/delpacrep.png" /> Recibo de cheque en garant&iacute;a contenedor</h2>
+      <h4 align="center">RG - Coscon - {{gar!=undefined ? gar.secuencial: ''}}</h4>
+      <br />
+      <div class="contenedor-cab">
+        <div class="cab">
+          <div class="etiqueta-cab">Fecha de emisi&oacute;n:</div>
+          <div class="etiqueta-cab">{{gar!=undefined ? gar.fecha_registro : ''}}</div>
+          <div class="etiqueta-cab">Nombre de la nave:</div>
+          <div class="etiqueta-cab">{{gar!=undefined ? gar.nave : ''}}</div>
+          <div class="etiqueta-cab">BL:</div>
+          <div class="etiqueta-cab">{{gar!=undefined ? gar.cod_bl : ''}}</div>
+          <div class="etiqueta-cab">Cliente:</div>
+          <div class="etiqueta-cab">{{gar!=undefined ? gar.cliente : ''}}</div>
+          <div class="etiqueta-cab">Consignatario:</div>
+          <div class="etiqueta-cab">{{gar!=undefined ? gar.consignatario : ''}}</div>
+        </div>
+        <br />
+      </div>
+      
+
+      <p >
+        De nuestras consideraciones:
+        <br />
+        Por medio de la presente confirmamos haber recibido del cliente en la referencia, garant&Iacute;a
+        por el valor de: $ {{gar!=undefined ? gar.valor : ''}}
+      </p>
+
+      <table class="table table-striped table-bordered" role="grid" cellspacing="0" style="width:100%">
+        <thead>
+          <tr>
+            <th>Container</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Banco</th>
+            <th>Cuenta</th>
+            <th>Cheque</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{gar!=undefined ? gar.cod_container : ''}}</td>
+            <td>{{gar!=undefined ? gar.tipo_contenedor : '' }}</td>
+            <td>{{gar!=undefined ? gar.valor : ''}}</td>
+            <td>{{gar!=undefined ? gar.banco : ''}}</td>
+            <td>{{gar!=undefined ? gar.numero_cuenta : ''}}</td>
+            <td>{{gar!=undefined ? gar.cheque : ''}}</td>
+            <td>{{gar!=undefined ? gar.valor : ''}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="contenedor">
+        <br />
+      </div>
+
+      <div id="parrafos">
+        <p>
+          Una vez devuelto(s) el(los) contenedor(es) sin novedad al dep&oacute;sito, agradecemos
+          <b>registrar la solicitud de devoluci&oacute;n de garant&iacute;a</b>
+          adjuntando EIR/RECIBO al siguiente email: facturacion@delpac-sa.com detallando en el asunto:
+          Devoluci&oacute;n de garant&iacute;a, n&uacute;mero de recibo, nombre del cliente.
+        </p>
+        <p>
+          Confirmada la fecha de retiro de su cheque de garant&iacute;a, favor acercarse a nuestra oficina
+          con la siguiente documentaci&oacute;n del emisor del cheque:
+        </p>
+        <p><b>. Original del recibo de cheque en garant&Iacute;a</b></p>
+        <p><b>. EIR entregado en el dep&oacute;sito</b></p>
+        <p><b>. Copia de RUC</b></p>
+        <p><b>. Copia de nombramiento y c&eacute;dula del representante legal</b></p>
+        <p><b>. Carta de autorizaci&oacute;n firmada por el representante legal con datos del embarque y cheque</b></p>
+        <p><b>. Copia y c&eacute;dula de la persona que retira el cheque</b></p>
+        <p><b>. El delegado debe contar con sello de la cia para el retiro de cheque</b></p>
+        <p>
+          <b>
+            Registro de garant&iacute;a se receptan hasta los d&iacute;as jueves para su devoluci&oacute;n el
+            d&Iacute;a martes de la siguiente semana.
+          </b>
+        </p>
+        <p>RETIRO DE GARANTIA SOLO LOS D&Iacute;AS MARTES EN HORARIO DE 08:30 - 12:30 / 14:30 - 17:00 PREVIO REGISTRO</p>
+      </div>
+      <br />
+      <p>Atentamente:</p>
+      <br />
+      <br />
+      <br />
+      <p>________________________</p>
+      <p>Mar&iacute;a Uzho</p>
+      <p>Caja/Recepci&oacute;n</p>
+    </div>
+  </div>
+</div>

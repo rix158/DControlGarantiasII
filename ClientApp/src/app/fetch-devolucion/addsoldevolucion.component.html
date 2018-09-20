@@ -1,0 +1,130 @@
+<div class="col-md-10 col-md-offset-1">
+  <h1>{{title}}</h1>
+  <h3>Solicitud de devoluciones</h3>
+  <div class="widget">
+    <hr class="widget-separator">
+  </div>
+  <hr />
+
+  <form [formGroup]="devolucionForm" (ngSubmit)="save()" #formDir="ngForm" class="form-horizontal">
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">C&oacute;digo BL</label>
+      <div class="col-sm-9">
+        <div class='input-group'>
+          <input [(ngModel)]="selectedOption" [typeahead]="listabl" typeaheadOptionField="cod_bl"
+                 (typeaheadOnSelect)="onSelect($event)" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="3"
+                 id="codbldev" autofocus="autofocus" class="form-control" formControlName="cod_bl" placeholder="N&uacute;mero BL" required>
+          <span class="input-group-addon bg-info text-white">
+            <span class="glyphicon glyphicon-search"></span>
+          </span>
+        </div>
+      </div>
+      <span class="text-danger" *ngIf="cod_bl.invalid && formDir.submitted">
+        C&oacute;digo BL requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Consignatario</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="consignatario" placeholder="Nombre del consignatario" required>
+      </div>
+      <span class="text-danger" *ngIf="consignatario.invalid && formDir.submitted">
+        Nombre del consignatario es requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Fecha devoluci&oacute;n</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="fecha_dev" placeholder="Fecha que se indicar&aacute; en el email" required>
+      </div>
+      <span class="text-danger" *ngIf="fecha_dev.invalid && formDir.submitted">
+        Fecha devoluci&oacute;n requerida.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Cliente</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="text" formControlName="cliente" placeholder="Nombre del cliente" required>
+      </div>
+      <span class="text-danger" *ngIf="cliente.invalid && formDir.submitted">
+        Nombre del cliente es requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="control-demo-4" class="col-sm-3">Correo electr&oacute;nico</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="email" formControlName="email" placeholder="Correo electr&oacute;nico" required>
+      </div>
+      <span class="text-danger" *ngIf="email.invalid && formDir.submitted">
+        Correo electr&oacute;nico requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <h4 class="m-b-lg">Habilitantes</h4>
+        <div class="checkbox">
+          <input type="checkbox" id="cb-01" formControlName="doc_recibo_cheque" required>
+          <label for="cb-01">Recibo de cheque en garant&Iacute;a</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="cb-02" formControlName="doc_EIR" required>
+          <label for="cb-02">Documento EIR</label>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <h4 class="m-b-lg">Tipo de cliente</h4>
+        <div class="radio">
+          <input type="radio" id="radio-1" value="natural" formControlName="tipo_cliente" required />
+          <label for="radio-1">Persona Natural</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="radio-2" value="juridica" formControlName="tipo_cliente" required />
+          <label for="radio-2">Persona Jur&iacute;dica</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="radio-3" value="sin_eir" formControlName="tipo_cliente" required />
+          <label for="radio-3">Sin EIR</label>
+        </div>
+      </div>
+      <span class="text-danger" *ngIf="tipo_cliente.invalid && formDir.submitted">
+        Tipo de cliente es requerido.
+      </span>
+
+      <div class="col-sm-4">
+        <h4 class="m-b-lg">Detalles</h4>
+        <div class="radio">
+          <input type="radio" id="radio-4" value="danio" formControlName="motivo_multa" required />
+          <label for="radio-4">Daño</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="radio-5" value="demoraje" formControlName="motivo_multa" required />
+          <label for=" radio-5">Demoraje</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="radio-6" value="otros" formControlName="motivo_multa" required />
+          <label for="radio-6">Otros</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="radio-7" value="ninguno" formControlName="motivo_multa" required />
+          <label for="radio-7">Ninguno</label>
+        </div>
+      </div>
+      <span class="text-danger" *ngIf="motivo_multa.invalid && formDir.submitted">
+        Detalle es requerido.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-9">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

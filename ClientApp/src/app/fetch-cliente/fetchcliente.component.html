@@ -1,0 +1,42 @@
+<div class="col-md-12">
+  <h1>Datos de clientes con exoneraci&oacute;n vigente</h1>
+  <p>Revisi&oacute;n y actualizaci&oacute;n de exoneraci&oacute;n</p>
+  <p>
+    <button [routerLink]="['/register-cliente']" type="button" class="btn btn-primary"><i class="fa fa-edit"></i>  Registrar nuevo cliente</button>
+  </p>
+  <p *ngIf="!clients"><em>Loading...</em></p>
+
+  <div class="widget">
+    <div class="widget-body">
+        <table class="table table-striped" role="grid" cellspacing="0" style="width:100%">
+          <thead>
+            <tr>
+              <th>Ruc</th>
+              <th>Cliente</th>
+              <th>Exoneraci&oacute;n</th>
+              <th>Observaci&oacute;n</th>
+              <th>Registrado</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let cli of clients">
+              <td>{{ cli.ruc }}</td>
+              <td>{{ cli.cliente }}</td>
+              <td>{{ cli.exoneracion }}</td>
+              <td>{{ cli.observacion }}</td>
+              <td>{{ cli.fechaReg }}</td>
+              <td>
+                <a [routerLink]="['/cliente/edit/', cli.id]">Editar</a>
+              </td>
+              <td>
+                <a [routerLink]="" (click)="delete(cli.id)">Eliminar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
