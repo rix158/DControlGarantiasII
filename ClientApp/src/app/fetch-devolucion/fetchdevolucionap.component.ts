@@ -31,14 +31,6 @@ export class FetchDevolucionApComponent {
         this.datatable = table.DataTable();
       });
   }
-
-  /*Metodo que comunica la devolucion*/
-  //devolver(id_devolucion) {
-  //    this._devolucionService.updateDevolucionAp(id_devolucion).subscribe((data) => {
-  //        this.getDevolucionesAp();
-  //    }, error => console.error(error))
-  //}
-
 }
 
 interface DevolucionData {
