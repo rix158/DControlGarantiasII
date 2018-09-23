@@ -28,7 +28,7 @@ export class createDevolucion implements OnInit {
   constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,
     private _devolucionService: DevolucionService,
     private _garantiaService: GarantiaService, private _router: Router) {
-    this.getBlGarantias();
+    this.getBlDevoluciones();
 
     if (this._avRoute.snapshot.params["id"]) {
       this.id = this._avRoute.snapshot.params["id"];
@@ -50,8 +50,8 @@ export class createDevolucion implements OnInit {
   }
 
   /*Consulta los bls para el metodo de autocompletado*/
-  getBlGarantias() {
-    this._garantiaService.getBlGarantias().subscribe(
+  getBlDevoluciones() {
+    this._garantiaService.getBlDevoluciones().subscribe(
       data => {
         this.dList = data;
         this.listabl.splice(0, this.listabl.length);

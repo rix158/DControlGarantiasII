@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FetchDevolucionComponent } from '../fetch-devolucion/fetchdevolucion.component';
@@ -18,44 +18,24 @@ export class createGarantia implements OnInit {
   selectedValue: string;
   selectedOption: any;
   cliente: string;
-  cod_bl: string ="";
+  cod_bl: string = "";
+  label_titulo = "";
 
   private fieldArray: Array<any> = [];
   private newAttribute: any = {};
   public gList: GData[];
   public gListed: any[] = [];
   codbl: string;
-  //garantiaForm: FormGroup;
   title: string = "Crear";
   id: number;
   errorMessage: any;
 
   constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,
-    private _garantiaService: GarantiaService, private _router: Router) {
+    private _garantiaService: GarantiaService, private _router: Router, private _render: Renderer2) {
     this.getBlGarantias();
     if (this._avRoute.snapshot.params["id"]) {
       this.id = this._avRoute.snapshot.params["id"];
     }
-
-    //this.garantiaForm = this._fb.group({
-    //  id_garantia: 0,
-    //  cod_bl: ['', [Validators.required]],
-    //  nave: ['', [Validators.required]],
-    //  cliente: ['', [Validators.required]],
-    //  banco: ['', [Validators.required]],
-    //  numero_cuenta: ['', [Validators.required]],
-    //  consignatario: ['', [Validators.required]],
-    //  contenedores: ['', [Validators.required]],
-    //  cod_container: ['', [Validators.required]],
-    //  tipo_contenedor: ['', [Validators.required]],
-    //  valor: ['', [Validators.required]],
-    //  cheque: ['', [Validators.required]],
-    //  tipo_pago: ['', [Validators.required]],
-    //  fecha_registro: [''],
-    //  usuario: [''],
-    //  fechaReg: [''],
-    //  fechaAct: ['']
-    //})
   }
 
   /*Consulta los bls para el metodo de autocompletado*/
@@ -73,12 +53,20 @@ export class createGarantia implements OnInit {
   
   ngOnInit() {
     this.addFieldValue();
+    this._render.removeClass(document.getElementById('searchcomp'), 'delpac-hidden');
+    this.label_titulo = "Registro de Garantia";
     if (this.id > 0) {
       this.title = "Editar";
       this._garantiaService.getGarantiaById(this.id)
         .subscribe(resp => {
-          //this.garantiaForm.setValue(resp);
-          //this.fieldArray[0] = {};
+         
+          this._render.addClass(document.getElementById('searchcomp'), 'delpac-hidden');
+          this.label_titulo = "Edicion de Garantia del BL: " + resp['cod_bl'];
+          this._garantiaService.getPrevGarantiaById(resp['cod_bl'])
+            .subscribe(resp => {
+              this.gListed = resp;
+            }
+              , error => this.errorMessage = error)
         }, error => this.errorMessage = error)
     }
   }
@@ -105,25 +93,7 @@ export class createGarantia implements OnInit {
         }, error => this.errorMessage = error)
     }
   }
-  save() {
-    //if (!this.garantiaForm.valid) {
-    //  return;
-    //}
-
-    //if (this.title == "Crear") {
-    //  this._garantiaService.saveGarantia(this.garantiaForm.value)
-    //    .subscribe((data) => {
-    //      this._router.navigate(['/fetch-garantia']);
-    //    }, error => this.errorMessage = error)
-    //}
-    //else if (this.title == "Editar") {
-    //  this._garantiaService.updateGarantia(this.garantiaForm.value)
-    //    .subscribe((data) => {
-    //      this._router.navigate(['/fetch-garantia']);
-    //    }, error => this.errorMessage = error)
-    //}
-  }
-
+  
   /*Metodo que carga los datos al digitar/setear el numero de bl*/
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
@@ -149,24 +119,6 @@ export class createGarantia implements OnInit {
   cancel() {
     this._router.navigate(['/fetch-garantia']);
   }
-
-  //get cod_bl() { return this.garantiaForm.get('cod_bl'); }
-  //get nave() { return this.garantiaForm.get('nave'); }
-  //get cliente() { return this.garantiaForm.get('cliente'); }
-  //get banco() { return this.garantiaForm.get('banco'); }
-  //get numero_cuenta() { return this.garantiaForm.get('numero_cuenta'); }
-  //get consignatario() { return this.garantiaForm.get('consignatario'); }
-  //get contenedores() { return this.garantiaForm.get('contenedores'); }
-  //get cod_container() { return this.garantiaForm.get('cod_container'); }
-  //get tipo_contenedor() { return this.garantiaForm.get('tipo_contenedor'); }
-  //get valor() { return this.garantiaForm.get('valor'); }
-  //get cheque() { return this.garantiaForm.get('cheque'); }
-  //get tipo_pago() { return this.garantiaForm.get('tipo_pago'); }
-  //get fecha_registro() { return this.garantiaForm.get('fecha_registro'); }
-  //get fechaReg() { return this.garantiaForm.get('fechaReg'); }
-  //get fechaAct() { return this.garantiaForm.get('fechaAct'); }
-  //get usuario() { return this.garantiaForm.get('usuario'); }
-
 }
 
 interface GData {
