@@ -77,7 +77,6 @@ export class createGarantia implements OnInit {
       this.title = "Editar";
       this._garantiaService.getGarantiaById(this.id)
         .subscribe(resp => {
-
           //this.garantiaForm.setValue(resp);
           //this.fieldArray[0] = {};
         }, error => this.errorMessage = error)

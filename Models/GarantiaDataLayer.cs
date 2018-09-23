@@ -16,26 +16,6 @@ namespace DControlGarantiasII.Models
 
         public int AddGarantia(Garantia garantia,ItemGarantia ig)
         {
-            //garantia = ig.contenedores[0];
-            //Console.WriteLine("OEEEE: "+ig.detalle);
-
-            //string separador = ";";
-            //string[] detalles = ig.detalle.Split(separador, StringSplitOptions.RemoveEmptyEntries);
-
-            //for (int i = 0; i < detalles.Length; i++)
-            //{
-            //    string[] row = detalles[i].Split("|", StringSplitOptions.RemoveEmptyEntries);
-            //    for (int j = 0; j < 1; j++ )
-            //    {
-            //        string banco = row[0] ;
-            //        string numero_cuenta = row[1];
-            //        string valor = row[2];
-            //        string documento = row[3];
-            //        string tipo_pago = row[4];
-
-            //    }
-                //procedimiento @flag = 'CD'
-                
             try
             {
                 using (SqlConnection con = new SqlConnection(login.LoginDB()))
@@ -67,7 +47,7 @@ namespace DControlGarantiasII.Models
                         cmd.Parameters.AddWithValue("@cliente", ig.cliente);
                         cmd.Parameters.AddWithValue("@consignatario", garantia.consignatario);
                         cmd.Parameters.AddWithValue("@contenedores", cantidadContenedor);
-                        cmd.Parameters.AddWithValue("@cod_container", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@cod_container", garantia.cod_container);
                         cmd.Parameters.AddWithValue("@tipo_contenedor", garantia.tipo_contenedor);
                         cmd.Parameters.AddWithValue("@secuencial", DBNull.Value);
 

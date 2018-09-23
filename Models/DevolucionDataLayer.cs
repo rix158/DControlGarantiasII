@@ -16,6 +16,25 @@ namespace DControlGarantiasII.Models
         /*Creacion de solicitud de devolucion*/
         public int AddDevolucion(Devolucion devolucion)
         {
+            string drc = string.Empty;
+            string eir = string.Empty;
+
+            if (devolucion.doc_recibo_cheque == "true")
+            {
+                drc = "SI";
+            }
+            else{
+                drc = "NO";
+            }
+            if (devolucion.doc_EIR == "true")
+            {
+                eir = "SI";
+            }
+            else
+            {
+                eir = "NO";
+            }
+            
             try
             {
                 using (SqlConnection con = new SqlConnection(login.LoginDB()))
@@ -29,8 +48,8 @@ namespace DControlGarantiasII.Models
                     cmd.Parameters.AddWithValue("@consignatario", devolucion.consignatario);
                     cmd.Parameters.AddWithValue("@cliente", devolucion.cliente);
                     cmd.Parameters.AddWithValue("@email", devolucion.email);
-                    cmd.Parameters.AddWithValue("@doc_recibo_cheque", devolucion.doc_recibo_cheque);
-                    cmd.Parameters.AddWithValue("@doc_EIR", devolucion.doc_EIR);
+                    cmd.Parameters.AddWithValue("@doc_recibo_cheque", drc);
+                    cmd.Parameters.AddWithValue("@doc_EIR", eir);
                     cmd.Parameters.AddWithValue("@tipo_cliente", devolucion.tipo_cliente);
                     cmd.Parameters.AddWithValue("@motivo_multa", devolucion.motivo_multa);
                     cmd.Parameters.AddWithValue("@estado_apr", "AE"); //aprobacion en espera

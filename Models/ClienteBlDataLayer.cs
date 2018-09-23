@@ -144,6 +144,14 @@ namespace DControlGarantiasII.Models
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@flag", "D");
                     cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@ruc", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cliente", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cod_bl", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@exoneracion", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@observacion", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@usuario", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fechaReg", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fechaAct", DBNull.Value);
                     con.Open();
                     cmd.ExecuteNonQuery();
 

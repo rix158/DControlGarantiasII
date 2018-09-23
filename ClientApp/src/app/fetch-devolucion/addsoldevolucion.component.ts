@@ -41,8 +41,8 @@ export class createDevolucion implements OnInit {
       consignatario: ['', [Validators.required]],
       cliente: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      doc_recibo_cheque: ['', [Validators.required]],
-      doc_EIR: ['', [Validators.required]],
+      doc_recibo_cheque: [''],
+      doc_EIR: [''],
       tipo_cliente: ['', [Validators.required]],
       motivo_multa: ['', [Validators.required]]
       
