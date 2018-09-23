@@ -205,6 +205,60 @@ namespace DControlGarantiasII.Models
             }
         }
 
+        /*Consultar garantias existentes de clientes*/
+        public IEnumerable<Garantia> GetAllBlDevoluciones()
+        {
+            try
+            {
+                List<Garantia> lstGarantia = new List<Garantia>();
+
+                using (SqlConnection con = new SqlConnection(login.LoginDB()))
+                {
+                    SqlCommand cmd = new SqlCommand("PRO_CG_CONSULTAR_GARANTIA", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@flag", "RBD");
+                    cmd.Parameters.AddWithValue("@id_garantia", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cod_bl", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fecha_registro", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@nave", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cliente", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@banco", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@numero_cuenta", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@consignatario", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@contenedores", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cod_container", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@tipo_contenedor", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@valor", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cheque", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@tipo_pago", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@secuencial", DBNull.Value);
+                    /*Datos de auditoria*/
+                    cmd.Parameters.AddWithValue("@usuario", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fechaReg", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@fechaAct", DBNull.Value);
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        Garantia garantia = new Garantia();
+                        garantia.cod_bl = rdr["cod_bl"].ToString();
+                        lstGarantia.Add(garantia);
+                    }
+                    con.Close();
+                }
+                return lstGarantia;
+            }
+            catch (Exception ex)
+            {
+                /*pruebas*/
+                res = "Error de conexion y consulta de garantias" + ex;
+                throw;
+            }
+
+        }
+
+
         /*Aprobacion de DEVOLUCION (cambio de estado)*/
         public Devolucion UpdateDevolucion(int id)
         {

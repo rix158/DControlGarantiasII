@@ -45,7 +45,7 @@ export class GarantiaService {
   }
 
   getBlGarantias() {
-    return this._http.get(this.myAppUrl + 'api/GarantiaBl/Index')
+    return this._http.get(this.myAppUrl + 'api/DevolucionBl/Index')
       .map((response: Response) => response.json())
       .catch(this.errorHandler);
   }

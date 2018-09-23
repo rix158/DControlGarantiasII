@@ -33,12 +33,13 @@ namespace DControlGarantiasII.Controllers
             return objDevolucion.AddDevolucion(devolucion);
         }
 
-        //[HttpPost]
-        //[Route("api/DevolucionAp/Create")]
-        //public int CreateAp([FromBody] DevolucionAp devolucionap)
-        //{
-        //    return objDevolucionAp.UpdateDevolucionAp(devolucionap);
-        //}
+        //GetAllBlDevoluciones
+        [HttpGet("[action]")]
+        [Route("api/DevolucionBl/Index")]
+        public IEnumerable<Garantia> IndexBl()
+        {
+            return objDevolucion.GetAllBlDevoluciones();
+        }
 
         [HttpGet]
         [Route("api/Devolucion/Details/{id}")]
