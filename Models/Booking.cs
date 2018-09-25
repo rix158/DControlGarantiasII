@@ -16,5 +16,7 @@ namespace DControlGarantiasII.Models
         public string cod_linea { get; set; }
         public string fec_embarque { get; set; }
 
+        public List<BookingDetalle> bookingDetalleList { get; set; }
+
     }
 }

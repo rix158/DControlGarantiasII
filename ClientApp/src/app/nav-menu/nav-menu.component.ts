@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-nav-menu',
-    templateUrl: './nav-menu.component.html'
+  selector: 'nav-menu',
+  templateUrl: './nav-menu.component.html'
 })
 export class NavMenuComponent {
- 
+  usuario;
+
+  constructor() {
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+  }
 }

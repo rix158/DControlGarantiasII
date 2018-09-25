@@ -2,14 +2,23 @@
 <p>Generaci&oacute;n de EDI file.</p>
 <p>
 </p>
-<p *ngIf="!bookList"><em>Loading...</em></p>
+<p *ngIf="!bookList">
+  <em>Loading...</em>
+</p>
 <div class="row">
   <!-- DOM dataTable -->
   <div class="col-md-12">
     <div class="widget">
       <hr class="widget-separator">
 
-      <p-table [columns]="cols" [value]="bookList" dataKey="ids_bl" [paginator]="true" [rows]="10">
+      <p-table #dt [columns]="cols" [value]="bookList" dataKey="ids_bl" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+          <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Búsque aquí" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                   style="width:auto">
+          </div>
+        </ng-template>
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th style="width: 3em"></th>
@@ -22,7 +31,7 @@
         <ng-template pTemplate="body" let-book let-expanded="expanded" let-columns="columns">
           <tr>
             <td>
-              <a href="#" [pRowToggler]="book">
+              <a href="#" [pRowToggler]="book" (click)="getDetalle(book)">
                 <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
               </a>
             </td>
@@ -32,24 +41,53 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-book let-columns="columns">
-          <tr>
-            <td [attr.colspan]="columns.length + 1">
-              <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
-                <div class="ui-g-12 ui-md-9">
-                  <div class="ui-g">
-                    <div class="ui-g-12">
-                      <b>Vin:</b> {{book.cod_linea}}
-                    </div>
-                    <div class="ui-g-12">
-                      <b>Year:</b> {{book.cod_bl}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+          <div class="div-booking-cab">
+            <div class="div-tr-booking">CONTENEDOR</div>
+            <div class="div-tr-booking" style="width: 75px!important">TIPO CONT.</div>
+            <div class="div-tr-booking" style="width: 250px!important">CARGA</div>
+            <div class="div-tr-booking">CARGA PELIGROSA</div>
+            <div class="div-tr-booking">ESTADO</div>
+            <div class="div-tr-booking">OPCIONES</div>
+          </div>
+          <div class="div-booking" *ngFor="let detbook of book['bookingDetalleList']">
+            <div class="div-td-booking">{{detbook['cod_container']}}</div>
+            <div class="div-td-booking" style="width: 75px!important">{{detbook['cod_tipcont']}}</div>
+            <div class="div-td-booking" style="width: 250px!important">{{detbook['cod_carga']}}</div>
+            <div class="div-td-booking">{{detbook['cod_peligro']}}</div>
+            <div class="div-td-booking">{{detbook['estado']==null?'NO ENVIADO':detbook['estado']}}</div>
+            <div class="div-td-booking">
+              <a *ngIf="detbook['estado']==null" style="font-size:16px" title="ENVIAR D95B" href="#" data-toggle="modal" data-target="#deleteItemModal" (click)="seleccionar(detbook,'SEND')">
+                <i class="fa fa-send"></i>
+              </a>
+              <!--*ngIf="detbook['estado']=='SEND' || detbook['estado']=='EDIT'"-->
+              <a *ngIf="detbook['estado']=='SEND' || detbook['estado']=='EDIT'" title="EDITAR Y ENVIAR POR FTP" href="#" data-toggle="modal" data-target="#deleteItemModal" (click)="seleccionar(detbook,'EDIT')">
+                <i class="fa fa-pencil" style="color:orangered!important;font-size: 16px;margin-left: 10px;"></i>
+              </a>
+              <a *ngIf="detbook['estado']=='SEND' || detbook['estado']=='EDIT'" style="color:red!important;font-size: 16px;margin-left: 10px;" title="ELIMINAR Y ENVIAR POR FTP" data-toggle="modal" data-target="#deleteItemModal" href="#" (click)="seleccionar(detbook,'DROP')">
+                <i class="fa fa-recycle"></i>
+              </a>
+            </div>
+          </div>
         </ng-template>
       </p-table>
     </div>
   </div>
 </div>
+<!-- delete item Modal -->
+<div id="deleteItemModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{modo_envio=='DROP'?'ELIMINAR':(modo_envio=='SEND'?'ENVIAR':'EDITAR')}} EDI</h4>
+      </div>
+      <div class="modal-body">
+        <h5>Está seguro que desea enviar el EDI  en modo {{modo_envio=='DROP'?'ELIMINAR':(modo_envio=='SEND'?'ENVIAR':'EDITAR')}}</h5>
+        <p>Esta acción enviará un EDI por FTP</p>
+      </div><!-- .modal-body -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="procesar()" data-dismiss="modal">{{modo_envio=='DROP'?'ELIMINAR':(modo_envio=='SEND'?'ENVIAR':'EDITAR')}}</button>
+      </div><!-- .modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

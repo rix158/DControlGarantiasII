@@ -10,13 +10,15 @@ export class HomeComponent {
 
   name = 'Administrador';
   fecha = new Date();
+  usuario;
 
   constructor(private router: Router, private loginService: LoginService, private _renderer: Renderer2) {
     this.changeClassHomePage();
   }
 
   Logout() {
-    localStorage.removeItem('userToken');
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    //localStorage.removeItem('usuario');
     this.router.navigate(['/login']);
   }
 
@@ -29,5 +31,6 @@ export class HomeComponent {
     this._renderer.removeClass(document.getElementById('app-navbar'), 'delpac-hidden');
     this._renderer.removeClass(document.getElementById('menubar'), 'delpac-hidden');
   }
+
 
 }

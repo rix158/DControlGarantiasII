@@ -17,6 +17,7 @@ namespace DControlGarantiasII.Models
         public string des_sello2 { get; set; }
         public string des_sello3 { get; set; }
         public string des_sello4 { get; set; }
+        public string estado { get; set; }
 
     }
 }

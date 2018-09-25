@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,29 +10,35 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <script>
-        Breakpoints();
-        System.import('app/main.js').catch(function (err) { console.error(err); });
+    Breakpoints();
+    System.import('app/main.js').catch(function (err) { console.error(err); });
   </script>
 </head>
 
-<body class="menubar-left theme-primary menubar-light menubar-unfold">
-  <nav id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary">
+<body class="menubar-left menubar-unfold menubar-light theme-primary">
+  <nav id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary delpac-hidden">
     <!-- navbar header -->
     <div class="navbar-header">
       <button type="button" id="menubar-toggle-btn" class="navbar-toggle visible-xs-inline-block navbar-toggle-left hamburger hamburger--collapse js-hamburger">
         <span class="sr-only">Toggle navigation</span>
-        <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
       </button>
-      <button type="button" class="navbar-toggle navbar-toggle-right collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+      <button type="button" class="navbar-toggle navbar-toggle-right collapsed" data-toggle="collapse" data-target="#app-navbar-collapse"
+              aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="zmdi zmdi-hc-lg zmdi-more"></span>
       </button>
-      <button type="button" class="navbar-toggle navbar-toggle-right collapsed" data-toggle="collapse" data-target="#navbar-search" aria-expanded="false">
+      <button type="button" class="navbar-toggle navbar-toggle-right collapsed" data-toggle="collapse" data-target="#navbar-search"
+              aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="zmdi zmdi-hc-lg zmdi-search"></span>
       </button>
       <a href="/home" class="navbar-brand">
-        <span class="brand-icon"><i class="fa fa-gg"></i></span>
+        <span class="brand-icon">
+          <i class="fa fa-gg"></i>
+        </span>
         <span class="brand-name">DELPAC</span>
       </a>
     </div>
@@ -50,23 +57,32 @@
             <h5 class="page-title hidden-menubar-top hidden-float">Dashboard</h5>
           </li>
         </ul>
+        <ul class="nav navbar-toolbar navbar-toolbar-right navbar-right">
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-hc-lg zmdi-settings"></i></a>
+            <ul class="dropdown-menu animated flipInY">
+              <li><a (click)="logout()" href="#"><i class="zmdi m-r-md zmdi-hc-lg zmdi-account-box"></i>Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
     <!-- navbar-container -->
   </nav>
 
-  <aside id="menubar" class="menubar light">
-    <app-nav-menu></app-nav-menu>
+  <aside id="menubar" class="menubar light delpac-hidden">
+    <nav-menu></nav-menu>
   </aside>
 
   <main id="app-main" class="app-main">
     <div class="wrap">
       <section class="app-content">
         <div class="row">
-          <app-root>Loading...</app-root>
+          <app-root>Loading2...</app-root>
         </div>
       </section>
     </div>
   </main>
 </body>
+
 </html>

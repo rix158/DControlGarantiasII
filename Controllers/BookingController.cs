@@ -21,12 +21,12 @@ namespace DControlGarantiasII.Controllers
         }
 
         /*Metodo para creacion*/
-        //[HttpPost]
-        //[Route("api/Booking/Create")]
-        //public int Create([FromBody] Booking Booking)
-        //{
-        //    return objBooking.AddBooking(Booking);
-        //}
-        
+        [HttpPost]
+        [Route("api/Booking/Process")]
+        public int Process([FromBody] ItemBooking Booking)
+        {
+            return objBooking.ProcessBooking(Booking);
+        }
+
     }
 }
