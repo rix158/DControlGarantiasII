@@ -23,17 +23,19 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let dev of devols">
-            <td>{{ dev.fecha_registro }}</td>
+          <tr *ngFor="let dev of devols; let i=index">
+            <td>{{ dev.fecha_dev }}</td>
             <td>{{ dev.cliente }}</td>
             <td>{{ dev.consignatario }}</td>
             <td>{{ dev.doc_recibo_cheque }}</td>
             <td>{{ dev.doc_EIR }}</td>
             <td>{{ dev.estado_apr}}</td>
-            <td contenteditable="true"></td>
+            <td>
+              <input style="text-align:center; border:1px solid #ddd; width:100px" type="text" [(ngModel)]="devols[i].cheque">
+            </td>
 
             <td>
-              <a [routerLink]="" (click)="aprobar(dev.id_devolucion)">Aprobar</a>
+              <a [routerLink]="" (click)="aprobar(devols[i])">Aprobar</a>
             </td>
           </tr>
         </tbody>

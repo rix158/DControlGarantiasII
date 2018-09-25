@@ -33,11 +33,16 @@ export class FetchDevolucionComponent {
   }
 
   /*Metodo que comunica la solicitud ha sido aprobada -> bdd*/
-  aprobar(id_devolucion) {
-    this._devolucionService.updateDevolucion(id_devolucion)
-      .subscribe((data) => {
-      this.getDevoluciones();
-    }, error => console.error(error))
+  aprobar(dev) {
+    if (dev.cheque != null || dev.cheque != undefined) {
+      console.log(dev);
+      this._devolucionService.updateDevolucion(dev)
+        .subscribe((data) => {
+          this.getDevoluciones();
+        }, (error) => { console.log(error); })
+    } else {
+      alert('Por favor ingrese n&uacute;mero de cheque!');
+    }
   }
 }
 

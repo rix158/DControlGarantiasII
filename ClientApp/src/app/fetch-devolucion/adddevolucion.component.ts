@@ -15,7 +15,7 @@ export class createDevolucionAp implements OnInit {
   title: string = "Devolver";
   id: number;
   errorMessage: any;
-
+  
   /*Se hace uso del mismo servicio, pero usando el metodo Editar, para utilizar 
    * el id de la garantia a devolver y registrarla, usando la tabla de G_Devolucion_det*/
   constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,

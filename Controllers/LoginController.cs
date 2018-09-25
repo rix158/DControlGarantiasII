@@ -13,10 +13,10 @@ namespace DControlGarantiasII.Controllers
         LoginDataLayer login = new LoginDataLayer();
 
         [HttpGet("[action]")]
-        [Route("api/Login/Index/{usuario}/{password}")]
-        public Login IndexE(string usuario, string password)
+        [Route("api/Login/Index")]
+        public Login IndexE([FromQuery]string usuario, [FromQuery]string password)
         {
-            return login.GetLogins(usuario,password);
+            return login.GetLogins(usuario, password);
         }
     }
 }

@@ -30,7 +30,7 @@
             <td>{{ dev.estado_apr}}</td>
             <td>{{ dev.cheque}}</td>
             <td>
-              <a [routerLink]="['/devolucionap/edit/', dev.id_devolucion]">Devolver</a>
+              <a *ngIf="dev.estado_apr !='DEVUELTO'; else btn disabled" [routerLink]="['/devolucionap/edit/', dev.id_devolucion]">Devolver</a>
             </td>
           </tr>
         </tbody>

@@ -3,7 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GarantiaService } from '../services/garanservice.service';
-//import { Angular5Csv } from 'angular5-csv/Angular5-csv';
+import { saveAs } from 'file-saver/FileSaver';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
@@ -42,21 +42,23 @@ export class FetchGarantiaComponent {
   }
 
   generarCobro(garantia) {
-    //alert('valimos');
-    //let data = [
-    //  { cod_consignatario: garantia.cod_consignatario, fecha: garantia.fecha_registro }
-    //];
-    //let options = {
-    //  fieldSeparator: ',',
-    //  quoteStrings: '"',
-    //  decimalseparator: '.',
-    //  showLabels: true,
-    //  showTitle: true,
-    //  title: 'Prueba del formato de carga',
-    //  noDownload: false,
-    //  headers: ["First Name", "Last Name", "ID"]
-    //};
+    let data = [
+      { cod_consignatario: 'hola', fecha: 'fecha' }
+    ];
+    const replacer = (key, value) => value === null ? '' : value; // specify how you want to handle null values here
+    const header = Object.keys(data[0]);
+    let csv = data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
+    csv.unshift(header.join(','));
+    let csvArray = csv.join('\r\n');
 
-    //new Angular5Csv(data, "C:\FormatoCarga.csv", options);
+    var a = document.createElement('a');
+    var blob = new Blob([csvArray], { type: 'text/csv' }),
+      url = window.URL.createObjectURL(blob);
+
+    a.href = url;
+    a.download = "myFile.csv";
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
   }
 }

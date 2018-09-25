@@ -13,13 +13,10 @@ export class LoginService {
   }
 
   userAuthentication(userName, password) {
-    var data = "username=" + userName + "&password=" + password + "&grant_type=password";
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
-    return this.http.post(this.myAppUrl + '/token', data, { headers: reqHeader });
-    /*return this._http.get(this.myAppUrl + 'api/Login/Index?usuario=' + user + '&password=' + password)
-            .map((response: Response) => response.json())
-            .catch(this.errorHandler);
-            */
+    // var data = "username=" + userName + "&password=" + password;
+    // var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
+    return this.http.get(this.myAppUrl + 'api/Login/Index?usuario=' + userName + '&password=' + password);
+
   }
 
   errorHandler(error: Response) {

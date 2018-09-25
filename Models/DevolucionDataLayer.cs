@@ -260,17 +260,16 @@ namespace DControlGarantiasII.Models
 
 
         /*Aprobacion de DEVOLUCION (cambio de estado)*/
-        public Devolucion UpdateDevolucion(int id)
+        public int UpdateDevolucion(Devolucion devolucion)
         {
             try
             {
-                Devolucion devolucion = new Devolucion();
                 using (SqlConnection con = new SqlConnection(login.LoginDB()))
                 {
                     SqlCommand cmd = new SqlCommand("PRO_CG_CONSULTAR_DEVOLUCION", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@flag", "UE");
-                    cmd.Parameters.AddWithValue("@id_devolucion", id);
+                    cmd.Parameters.AddWithValue("@id_devolucion", devolucion.id_devolucion);
                     cmd.Parameters.AddWithValue("@cod_bl", DBNull.Value);
                     cmd.Parameters.AddWithValue("@cliente", DBNull.Value);
                     cmd.Parameters.AddWithValue("@consignatario", DBNull.Value);
@@ -291,14 +290,16 @@ namespace DControlGarantiasII.Models
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
-                return devolucion;
+                return 1;
             }
             catch (Exception ex)
             {
                 res = "Error de aprobació de garantia" + ex;
                 throw;
             }
+            return 0;
         }
+
 
         //Obtener detalles de devolucion especifico
         public Devolucion GetDevolucionData(int id)

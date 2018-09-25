@@ -16,16 +16,13 @@ namespace DControlGarantiasII.Models
         {
             try
             {
-                using(SqlConnection con = new SqlConnection(login.LoginDB()))
+                using (SqlConnection con = new SqlConnection(login.LoginDB()))
                 {
                     SqlCommand cmd = new SqlCommand("PRO_CG_CONSULTAR_LOGIN", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@flag", "R");
-                    cmd.Parameters.AddWithValue("@id_ usuario", DBNull.Value);
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@contrasenia", password);
-                    cmd.Parameters.AddWithValue("@cod_rol", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@rol", DBNull.Value);
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -34,7 +31,6 @@ namespace DControlGarantiasII.Models
                         Login ulogin = new Login();
                         ulogin.id_usuario = Int32.Parse(rdr["id_usuario"].ToString());
                         ulogin.usuario = rdr["usuario"].ToString();
-                        ulogin.contrasenia = rdr["contrasenia"].ToString();
                         ulogin.cod_rol = rdr["cod_rol"].ToString();
                         ulogin.rol = rdr["rol"].ToString();
 

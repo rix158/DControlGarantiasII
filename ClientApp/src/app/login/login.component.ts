@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  user={username:"",password:"",recordarme:''};
+  user = { username: null, password: null, recordarme: false };
+  mensaje: string;
 
   constructor(private _loginService: LoginService, private _router: Router,private _renderer: Renderer2) {
     this._renderer.addClass(document.body, 'simple-page');
@@ -27,18 +28,19 @@ export class LoginComponent {
   }
 
   login() {
-    /*this._loginService.userAuthentication(this.usuario.name, this.usuario.password).subscribe(
-      data => {
-        this.user = data;
-        if (this.user == undefined || this.user == null) {
-          this.mensaje = 'NO SE HA PODIDO COMPROBAR SU CREDENCIAL DE ACCESO ';
-        } else {
-          this._router.navigate(['/home']);
-          this.mensaje = "";
+    if (this.user.username != null && this.user.password != null) {
+      this._loginService.userAuthentication(this.user.username, this.user.password).subscribe(
+        data => {
+          if (data == undefined || data == null) {
+            this.mensaje = "No se ha podido comprobrar su credencial de acceso";
+          } else {
+            localStorage.setItem('usuario', JSON.stringify(data));
+            this._router.navigate(['/home']);
+            this.mensaje = "";
+          }
         }
-      }
-    )*/
-    this._router.navigate(['/home']);
+      );
+    }
   }
 
 }

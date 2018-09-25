@@ -44,20 +44,17 @@ export class DevolucionService {
             .catch(this.errorHandler)
   }
 
-  //REVISAR PROCESO DE EDICION - UPDATE DE CHEQUE POR REGISTRO
-    updateDevolucion(id: number) {
-        return this._http.get(this.myAppUrl + 'api/Devolucion/Edit/' + id)
-            .map((response: Response) => response.json())
-            .catch(this.errorHandler);
-    }
+   updateDevolucion(devolucion) {
+    return this._http.post(this.myAppUrl + 'api/Devolucion/Aprobar', devolucion)
+      .map((response: Response) => response.json())
+      .catch(this.errorHandler);
+  }
 
     updateDevolucionAp(devolucionap) {
         return this._http.put(this.myAppUrl + 'api/DevolucionAp/Edit/', devolucionap)
             .map((response: Response) => response.json())
             .catch(this.errorHandler);
-    }
-
-    
+    } 
 
     errorHandler(error: Response) {
         console.log(error);

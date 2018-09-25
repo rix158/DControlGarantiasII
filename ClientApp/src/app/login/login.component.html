@@ -1,10 +1,41 @@
-﻿<div mat-dialog-content>
-    <p>What's your Name</p>
-    <mat-form-field>
-        <input matInput [(ngModel)]="data.name">
-    </mat-form-field>
+
+<div class="simple-page-wrap">
+  <div class="simple-page-form animated flipInY" id="login-form">
+    <h4 class="form-title m-b-xl text-center">Control de Garantías</h4>
+    <div>
+      <div class="form-group text-center">
+        <img src="../../assets/images/delpac.png" />
+      </div>
+      <div class="form-group">
+        <input id="username" type="text" class="form-control " placeholder="Usuario" [(ngModel)]="user.username" required>
+      </div>
+
+      <div class="form-group">
+        <input id="password" type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="user.password" required>
+      </div>
+
+      <div class="form-group m-b-xl">
+        <div class="checkbox checkbox-primary">
+          <input type="checkbox" id="keep_me_logged_in" [(ngModel)]="user.recordarme" />
+          <label for="keep_me_logged_in">Recordarme</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <span>{{mensaje}}</span>
+      </div>
+      <button (click)="login()" class="btn btn-primary">INGRESAR</button>
+    </div>
+  </div>
+  <!-- #login-form -->
+  <!--<div class="simple-page-footer">
+    <p><a href="password-forget.html">FORGOT YOUR PASSWORD ?</a></p>
+    <p>
+      <small>Don't have an account ?</small>
+      <a href="signup.html">CREATE AN ACCOUNT</a>
+    </p>
+  </div>-->
+  <!-- .simple-page-footer -->
+
+
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Ok</button>
-</div>
+<!-- .simple-page-wrap -->

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+  import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ngCsv } from 'ng-csv';
-
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -38,7 +37,6 @@ import { BookingService } from './services/bookservice.service';
 import { LoginService } from './services/login.service';
 
 import { TableModule } from 'primeng/table';
-
 
 
 @NgModule({

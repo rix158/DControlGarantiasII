@@ -22,6 +22,7 @@
         "assets/css/bootstrap.css",
         "assets/css/core.css",
         "assets/css/app.css",
+        "assets/css/misc-pages.css",
         "libs/bower/font-awesome/css/font-awesome.min.css",
         "libs/bower/material-design-iconic-font/dist/css/material-design-iconic-font.css",
         "libs/bower/animate.css/animate.min.css",
@@ -41,6 +42,7 @@
         "libs/bower/perfect-scrollbar/js/perfect-scrollbar.jquery.js",
         "libs/bower/PACE/pace.min.js",
         "assets/js/library.js",
+        "libs/bower/breakpoints.js/dist/breakpoints.min.js",
         "assets/js/plugins.js",
         "assets/js/app.js",
         "libs/bower/moment/moment.js"

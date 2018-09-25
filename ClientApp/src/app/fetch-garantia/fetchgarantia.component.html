@@ -24,7 +24,7 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let gar of garants">
+          <tr *ngFor="let gar of garants; let i=index">
             <td>{{ gar.fecha_registro }}</td>
             <td>{{ gar.cod_bl }}</td>
             <td>{{ gar.nave }}</td>
@@ -39,8 +39,8 @@
             <td align="right">
               <div class="contact-item">
                 <div class="contact-links">
-                  <a (click)="generarCobro(gar)" tooltip="Generar cobro financiero" placement="top" class="icon icon-circle icon-sm m-b-0"><i class="fa fa-dollar"></i></a>
-                  <a [routerLink]="['/garantia/reporte/', gar.id_garantia]" tooltip="Generar recibo en garantia" placement="top" container="body" class="icon icon-circle icon-sm m-b-0"><i class="fa fa-print"></i></a>
+                  <a role="button" (click)="generarCobro(gar)" tooltip="Generar cobro financiero" placement="top" class="icon icon-circle icon-sm m-b-0"><i class="fa fa-dollar"></i></a>
+                  <a role="button" [routerLink]="['/garantia/reporte/', gar.id_garantia]" tooltip="Generar recibo en garantia" placement="top" container="body" class="icon icon-circle icon-sm m-b-0"><i class="fa fa-print"></i></a>
                 </div>
               </div>
             </td>
